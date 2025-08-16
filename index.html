@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- ====== Essentials ====== -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ACEs Care HUB Japan</title>
+  <meta name="description" content="ACEs×ヤングケアラーとACEsをつなぐ、日本発の情報・支援ハブ。相談先、研究、政策、海外事例をわかりやすく集約。広告なし・無料。" />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#1e73be" />
+
+  <!-- ====== Open Graph / Twitter ====== -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ACEs Care HUB Japan" />
+  <meta property="og:title" content="ACEs Care HUB Japan" />
+  <meta property="og:description" content="ACEs×ヤングケアラーとACEsをつなぐ、日本発の情報・支援ハブ。相談先、研究、政策、海外事例を集約。" />
+  <meta property="og:locale" content="ja_JP" />
+  <!-- 変更: 公開URLが決まったら差し替え -->
+  <link rel="canonical" href="https://example.github.io/aces-care/" />
+  <meta property="og:url" content="https://example.github.io/aces-care/" />
+  <!-- 変更推奨: 代表OG画像を用意したら差し替え -->
+  <meta property="og:image" content="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?w=1200&auto=format&fit=crop" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- ====== Preconnect to CDNs for speed ====== -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+
+  <!-- ====== Bootstrap 5 (CSS only) ====== -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- ====== Base Styles ====== -->
+  <style>
+    :root{
+      --brand:#1e73be;        /* メインブルー */
+      --brand-dark:#155a91;   /* ホバー/濃色 */
+      --ink:#222;             /* 本文色 */
+      --bg:#f6f8fb;           /* 下地 */
+      --card:#ffffff;         /* カード */
+      --muted:#6c757d;        /* 補助テキスト */
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --ink:#e8eaed; --bg:#0f1216; --card:#11161c; --muted:#a6adb5;
+      }
+      body{background-color:var(--bg);}  
+    }
+
+    html{scroll-behavior:smooth}
+    body{font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic UI", "Yu Gothic", Meiryo, sans-serif; color:var(--ink); background:var(--bg); line-height:1.8}
+
+    /* アクセシビリティ */
+    .skip-link{position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden}
+    .skip-link:focus{position:fixed; left:1rem; top:1rem; width:auto; height:auto; background:#000; color:#fff; padding:.5rem .75rem; z-index: 9999; border-radius:.5rem}
+    :focus-visible{outline:3px solid var(--brand); outline-offset:3px}
+
+    /* ナビバー */
+    .navbar{--bs-navbar-brand-color:#fff; --bs-navbar-color:#e6eef8}
+    .navbar-brand{font-weight:800; letter-spacing:.3px}
+    .navbar .btn-primary{background:var(--brand); border:none}
+
+    /* ヒーロー */
+    .hero{
+      background: radial-gradient(1200px 600px at 10% 0%, rgba(30,115,190,.25), transparent 60%),
+                  linear-gradient(180deg, #0d2240 0%, #0b1a31 100%);
+      color:#fff; position:relative; overflow:hidden;
+    }
+    .hero .container{padding: 5rem 1rem 4rem}
+    .hero h1{font-size: clamp(2rem, 4vw, 3rem); font-weight:900; letter-spacing:.2px}
+    .hero p.lead{color:#cfe3ff}
+    .badge-soft{background: rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2); color:#e7f0ff}
+
+    /* セクション */
+    section.section{padding: 4rem 0}
+
+    /* カード */
+    .card{background:var(--card); border:1px solid rgba(0,0,0,.06); box-shadow: 0 6px 24px rgba(13,30,58,.06)}
+    .icon{width:28px; height:28px}
+
+    /* CTAボタン */
+    .btn-brand{background:var(--brand); border:none}
+    .btn-brand:hover{background:var(--brand-dark)}
+
+    /* フッター */
+    footer{background:#0a1220; color:#cbd5e1}
+    footer a{color:#9cc7ff; text-decoration:none}
+    footer a:hover{text-decoration:underline}
+
+    /* 浮動トップボタン */
+    .to-top{position:fixed; right:1rem; bottom:1rem; z-index:999; display:none}
+
+    /* 画像の角丸と影 */
+    .img-elevated{border-radius:1rem; box-shadow:0 10px 30px rgba(0,0,0,.18)}
+
+    /* モーション軽減対応 */
+    @media (prefers-reduced-motion: reduce){
+      *{animation:none !important; transition:none !important}
+      html{scroll-behavior:auto}
+    }
+  </style>
+
+  <!-- ====== JSON-LD (構造化データ) ====== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ACEs Care HUB Japan",
+    "email": "tamatixyan@gmail.com",
+    "url": "https://example.github.io/aces-care/",
+    "logo": "https://images.unsplash.com/photo-1557053910-d9eadeed1c58?w=256&auto=format&fit=crop",
+    "founder": {"@type":"Person", "name":"田前秀樹"},
+    "description": "ACEs×ヤングケアラーとACEsをつなぐ日本の情報ハブ。相談先・研究・政策・海外事例を集約。",
+    "sameAs": []
+  }
+  </script>
+</head>
+<body>
+  <a href="#main" class="skip-link">本文へスキップ</a>
+
+  <!-- ====== Navbar ====== -->
+  <nav class="navbar navbar-expand-lg navbar-dark hero py-3" aria-label="メインナビゲーション">
+    <div class="container">
+      <a class="navbar-brand" href="#">ACEs Care HUB Japan</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="メニュー">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#about">ACEsとは</a></li>
+          <li class="nav-item"><a class="nav-link" href="#yc">ACEs×ヤングケアラー</a></li>
+          <li class="nav-item"><a class="nav-link" href="#mission">目的</a></li>
+          <li class="nav-item"><a class="nav-link" href="#help">支援を受ける</a></li>
+          <li class="nav-item"><a class="btn btn-sm btn-primary ms-lg-3" href="mailto:tamatixyan@gmail.com" aria-label="メールでお問い合わせ">お問い合わせ</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ====== Hero ====== -->
+  <header class="hero">
+    <div class="container text-center">
+      <span class="badge rounded-pill badge-soft mb-3">広告なし・無料 / 日本発の情報ハブ</span>
+      <h1 class="mb-3">ACEs×ヤングケアラーとACEsをつなぐ、<br class="d-none d-md-inline"/>実装志向のケア・エコシステム</h1>
+      <p class="lead mb-4">相談先・研究・政策・海外事例を一箇所に。<br class="d-none d-md-inline"/>必要な人に、必要な情報を、必要なタイミングで。</p>
+      <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+        <a class="btn btn-lg btn-brand" href="#help" aria-label="今すぐ相談先を探す">今すぐ相談先を探す</a>
+        <a class="btn btn-lg btn-outline-light" href="mailto:tamatixyan@gmail.com" aria-label="メールで問い合わせ">メールで問い合わせ</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ====== About ACEs ====== -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-6">
+            <img class="img-fluid img-elevated" src="https://images.unsplash.com/photo-1596495578065-8a35f2d4241f?w=1080&auto=format&fit=crop" alt="支え合う手の写真" width="1080" height="720" loading="lazy" />
+          </div>
+          <div class="col-lg-6">
+            <h2 class="fw-bold mb-3" style="color:var(--brand)">ACEsとは</h2>
+            <p>ACEs（<ruby>逆境的小児期体験<rt>Adverse Childhood Experiences</rt></ruby>）は、子ども時代に受けた不利な経験の総称です。経験が重なるほど、心身の健康、学業、社会参加に影響が及びます。早期の理解と支援が鍵になります。</p>
+            <ul class="list-unstyled d-grid gap-2">
+              <li class="d-flex align-items-start"><svg class="icon me-2" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 7L9 18l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>科学的知見に基づく説明とリソース</li>
+              <li class="d-flex align-items-start"><svg class="icon me-2" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 7L9 18l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>日本・海外の事例を横断的に整理</li>
+              <li class="d-flex align-items-start"><svg class="icon me-2" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 7L9 18l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>実務者・当事者双方に役立つ構成</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== Young Carer ====== -->
+    <section id="yc" class="section" style="background:linear-gradient(180deg, #fff, rgba(30,115,190,.06))">
+      <div class="container">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-6 order-lg-2">
+            <img class="img-fluid img-elevated" src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1080&auto=format&fit=crop" alt="家族を支える若者の写真" width="1080" height="720" loading="lazy" />
+          </div>
+          <div class="col-lg-6 order-lg-1">
+            <h2 class="fw-bold mb-3" style="color:var(--brand)">ACEs×ヤングケアラー</h2>
+            <p>家族の介護や世話を担う未成年の担い手を、ここでは<strong>ACEs×ヤングケアラー</strong>と表記します。ACEsの文脈と重なる課題が多く、教育・医療・福祉・地域が連携した支援が求められます。</p>
+            <div class="row g-3">
+              <div class="col-12 col-md-6">
+                <div class="card h-100 p-3">
+                  <div class="d-flex align-items-center mb-2"><svg class="icon me-2" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M8 12l2.5 2.5L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><strong>学業・進路</strong></div>
+                  <p class="mb-0 text-muted">欠席や集中力低下、進学の選択肢が狭まる等の影響が出やすい領域。</p>
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="card h-100 p-3">
+                  <div class="d-flex align-items-center mb-2"><svg class="icon me-2" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M8 12l2.5 2.5L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><strong>心身の負担</strong></div>
+                  <p class="mb-0 text-muted">慢性的な疲労・不安・孤立感へのケアが重要。専門職との接点づくりが鍵。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== Mission ====== -->
+    <section id="mission" class="section">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-5">
+            <h2 class="fw-bold mb-3" style="color:var(--brand)">このサイトの目的</h2>
+            <p>当事者・家族・支援者・政策担当者のために、<strong>分散した情報を一つに束ねる</strong>こと。検索の手間を減らし、行動までの距離を縮めます。</p>
+            <div class="d-flex gap-3 mt-3">
+              <a class="btn btn-brand" href="#help">支援を受ける</a>
+              <a class="btn btn-outline-secondary" href="#resources">リソース集</a>
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="card h-100 p-3">
+                  <div class="d-flex align-items-center mb-2"><svg class="icon me-2" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><strong>可視化</strong></div>
+                  <p class="mb-0 text-muted">課題の構造・実態を図解や短文でわかりやすく提示。</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card h-100 p-3">
+                  <div class="d-flex align-items-center mb-2"><svg class="icon me-2" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M5 12l5 5L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><strong>アクション</strong></div>
+                  <p class="mb-0 text-muted">今日できる1歩（相談・申請・連絡）まで導線を設計。</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card h-100 p-3">
+                  <div class="d-flex align-items-center mb-2"><svg class="icon me-2" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M12 2a10 10 0 100 20 10 10 0 000-20z" stroke="currentColor" stroke-width="2"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><strong>連携</strong></div>
+                  <p class="mb-0 text-muted">医療・教育・福祉・地域の連携を促す共通言語を整備。</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card h-100 p-3">
+                  <div class="d-flex align-items-center mb-2"><svg class="icon me-2" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><strong>アーカイブ</strong></div>
+                  <p class="mb-0 text-muted">研究・政策・海外事例を継続的に蓄積・更新。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== Help ====== -->
+    <section id="help" class="section" style="background:linear-gradient(180deg, rgba(30,115,190,.06), #fff)">
+      <div class="container">
+        <div class="text-center mb-4">
+          <h2 class="fw-bold" style="color:var(--brand)">支援を受ける</h2>
+          <p class="text-muted mb-0">緊急時は<abbr title="日本の緊急通報">110/119</abbr>へ。迷ったらメールでご相談ください。</p>
+        </div>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <div class="card h-100 p-3">
+              <div class="d-flex align-items-center mb-2"><svg class="icon me-2" viewBox="0 0 24 24" fill="none"><path d="M2 7h20M2 12h20M2 17h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><strong>今すぐの相談</strong></div>
+              <p class="text-muted">学校・市区町村の相談窓口、児童相談、医療・福祉機関などの公的支援につなぎます。</p>
+              <a class="btn btn-sm btn-brand" href="mailto:tamatixyan@gmail.com">メールで問い合わせ</a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100 p-3">
+              <div class="d-flex align-items-center mb-2"><svg class="icon me-2" viewBox="0 0 24 24" fill="none"><path d="M12 2l7 4v6c0 5-3.5 9-7 10-3.5-1-7-5-7-10V6l7-4z" stroke="currentColor" stroke-width="2"/></svg><strong>ACEs×ヤングケアラーの学び</strong></div>
+              <p class="text-muted">用語集・図解・チェックリストで、状況の整理と次の一歩をサポート。</p>
+              <a class="btn btn-sm btn-outline-secondary" href="#resources">リソースを見る</a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100 p-3">
+              <div class="d-flex align-items-center mb-2"><svg class="icon me-2" viewBox="0 0 24 24" fill="none"><path d="M3 12h18M12 3v18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><strong>実務者向け</strong></div>
+              <p class="text-muted">学校・医療・福祉・企業の支援担当者へ。研修・資料・連携モデルの提供。</p>
+              <a class="btn btn-sm btn-outline-secondary" href="#contact">連携相談</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== Resources ====== -->
+    <section id="resources" class="section">
+      <div class="container">
+        <div class="text-center mb-4">
+          <h2 class="fw-bold" style="color:var(--brand)">リソース集</h2>
+          <p class="text-muted mb-0">外部の良質な資料・ガイドライン・研究の入口。※リンクは順次拡充予定</p>
+        </div>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <div class="card h-100 p-3">
+              <div class="d-flex align-items-center mb-2"><svg class="icon me-2" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4z" stroke="currentColor" stroke-width="2"/><path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><strong>ガイドライン</strong></div>
+              <p class="text-muted">学校・自治体・医療機関向けの手引きや手順書。</p>
+              <a class="link-primary" href="#" aria-label="ガイドライン 外部リンク">外部リンク（準備中）</a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100 p-3">
+              <div class="d-flex align-items-center mb-2"><svg class="icon me-2" viewBox="0 0 24 24" fill="none"><path d="M12 2l7 7-7 7-7-7 7-7z" stroke="currentColor" stroke-width="2"/></svg><strong>研究・データ</strong></div>
+              <p class="text-muted">国内外の研究論文・統計・レビューへのポータル。</p>
+              <a class="link-primary" href="#" aria-label="研究・データ 外部リンク">外部リンク（準備中）</a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100 p-3">
+              <div class="d-flex align-items-center mb-2"><svg class="icon me-2" viewBox="0 0 24 24" fill="none"><path d="M5 20h14M12 3v14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><strong>海外事例</strong></div>
+              <p class="text-muted">政策・制度・現場の取り組みをケースで学ぶ。</p>
+              <a class="link-primary" href="#" aria-label="海外事例 外部リンク">外部リンク（準備中）</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== Contact ====== -->
+    <section id="contact" class="section" style="background:linear-gradient(180deg, #fff, rgba(30,115,190,.06))">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="card p-4 p-md-5">
+              <h2 class="fw-bold mb-3" style="color:var(--brand)">お問い合わせ</h2>
+              <p class="text-muted">連携・取材・講演・資料提供など、お気軽にご連絡ください。</p>
+              <div class="d-flex flex-column flex-sm-row gap-3">
+                <a class="btn btn-brand btn-lg" href="mailto:tamatixyan@gmail.com" aria-label="メールを送る">メール: tamatixyan@gmail.com</a>
+                <a class="btn btn-outline-secondary btn-lg" href="#" aria-disabled="true">FAQ（準備中）</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ====== Footer ====== -->
+  <footer class="py-5">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-md-6">
+          <div class="d-flex align-items-center gap-3">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M8 12l2.5 2.5L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div>
+              <strong>ACEs Care HUB Japan</strong><br/>
+              <small class="text-muted">代表者：田前秀樹</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <a class="me-3" href="mailto:tamatixyan@gmail.com" aria-label="メールでお問い合わせ">お問い合わせ</a>
+          <span class="text-muted">&copy; 2025 ACEs Care HUB Japan</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====== Back to Top Button ====== -->
+  <button type="button" class="btn btn-brand rounded-pill to-top" aria-label="ページトップへ">
+    ↑
+  </button>
+
+  <!-- ====== Bootstrap JS (Bundle) ====== -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+
+  <!-- ====== Small JS: show/hide to-top ====== -->
+  <script>
+    const toTop = document.querySelector('.to-top');
+    const onScroll = () => { toTop.style.display = window.scrollY > 600 ? 'inline-flex' : 'none'; };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
+</body>
+</html>
